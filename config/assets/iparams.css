@@ -1,0 +1,43 @@
+.labelClass {
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.star {
+    color: red;
+}
+
+.space1 {
+    margin-left: 15px !important;
+}
+
+.space {
+    margin-bottom: 10px;
+}
+
+.space1 {
+    margin-top: 10px;
+}
+
+.w100 {
+    width: 48.5%;
+}
+
+.w90 {
+    width: 90% !important;
+}
+
+.mainDiv {
+    padding-top: 10px;
+    padding-right: 50px;
+}
+
+.topPadding {
+    padding-top: 5px;
+}
+
+.clientDiv {
+    margin-left: 15px !important;
+    width: 97% !important;
+}

@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="https://static.freshdev.io/fdk/2.0/assets/freshdesk.css">
+    <link rel="stylesheet" type="text/css" href="custom.css">
+    <link href="https://select2.github.io/select2/select2-3.5.3/select2.css?ts=2015-08-29T20%3A09%3A48%2B00%3A00"
+        rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js">
+    </script>
+    <script src="https://static.freshdev.io/fdk/2.0/assets/fresh_client.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+    </script>
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js">
+    </script>
+    <script src="https://select2.github.io/select2/select2-3.5.3/select2.js?ts=2015-08-29T20%3A09%3A48%2B00%3A00">
+    </script>
+    <script type="module" src="https://unpkg.com/@freshworks/crayons/dist/crayons/crayons.esm.js">
+    </script>
+    <script nomodule src="https://unpkg.com/@freshworks/crayons/dist/crayons/crayons.js">
+    </script>
+    <script src="link.js"></script>
+    <script src="app.js"></script>
+    <script src="handleError.js"></script>
+
+</head>
+
+<body>
+    <div id="completeDiv">
+        <div id="errorMsg" class="star"></div>
+        <div class="fw-divider"></div>
+        <div id="successMSG" class="colorBlue"></div>
+        <div id="load">Loading please wait...</div>
+        <div>
+            <select class="w100 form-control" id="selectTask"></select>
+        </div>
+        <div id="divError" class="star"></div>
+        <br>
+        <div class="modal-footer" id="linkTaskDiv">
+            <fw-button id="linkTaskButton" class="linkTask"> Link Task </fw-button>
+        </div>
+    </div>
+</body>
+
+</html>

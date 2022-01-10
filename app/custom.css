@@ -1,0 +1,31 @@
+.star {
+    color: red;
+}
+
+.w100 {
+    width: 95% !important;
+}
+
+.colorBlue {
+    color: blue;
+}
+
+.createTask {
+    padding-right: 23px;
+}
+
+.linkTask {
+    padding-right: 10px;
+}
+
+.table-condensed {
+    width: 100% !important;
+}
+
+.datepicker {
+    width: 50% !important;
+}
+
+.width100 {
+    width: 100% !important;
+}

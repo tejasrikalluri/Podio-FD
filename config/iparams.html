@@ -1,0 +1,102 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://static.freshdev.io/fdk/2.0/assets/fresh_client.js"></script>
+    <script type="module" src="https://unpkg.com/@freshworks/crayons/dist/crayons/crayons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/@freshworks/crayons/dist/crayons/crayons.js"></script>
+    <script src="https://select2.github.io/select2/select2-3.5.3/select2.js?ts=2015-08-29T20%3A09%3A48%2B00%3A00">
+    </script>
+    <link rel="stylesheet" href="./assets/iparams.css">
+    <link rel="stylesheet" type="text/css" href="https://static.freshdev.io/fdk/2.0/assets/freshservice.css">
+    <link href="https://select2.github.io/select2/select2-3.5.3/select2.css?ts=2015-08-29T20%3A09%3A48%2B00%3A00" rel="stylesheet">
+    <script src="assets/iparams.js"></script>
+    <script src="assets/handleError.js"></script>
+</head>
+
+<body>
+    <div class="mainDiv">
+        <div class="space1">
+            <div>
+                <fw-input label="Freshdesk API Domain URL" class="w90" id="fdAPIDomain" state-text="Please enter freshdesk API domain URL. Ex: example.freshdesk.com" state="normal" placeholder="Enter Freshdesk API Domain URL" required clear-input>
+                </fw-input>
+            </div>
+            <div>
+                <fw-input label="Freshdesk custom Domain URL" class="w90" id="fdCustomDomain" state-text="Please enter freshdesk custom domain URL. Ex: example.example.com" state="normal" placeholder="Enter Freshdesk custom Domain URL" clear-input>
+                </fw-input>
+            </div>
+        </div>
+        <div>
+            <div class="space col-sm-12">
+                <fw-label value="Configure Podio Organization, Workspace and Tasks fields that you wish to manage in
+                    Freshdesk.">
+                </fw-label>
+            </div>
+            <div class="space">
+                <div class="col-sm-6">
+                    <fw-label class="labelClass" value="Select Organization: "></fw-label><i class="star"> *</i>
+                    <div class="topPadding">
+                        <select id="selectedOrganization" placeholder="Select the Organization" class="form-control">
+                        </select>
+                        <div id="orgError" class="star"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <fw-label class="labelClass" value="Select Workspace: "></fw-label><i class="star"> *</i>
+                    <div class="topPadding">
+                        <select id="selectedWorkspace" placeholder="Select the Workspace" class="form-control">
+                        </select>
+                        <div id="workError" class="star"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="space col-sm-12">
+                <fw-label class="labelClass" value="Select Task Fields: "></fw-label><i class="star"> *</i><br>
+                <div class="topPadding">
+                    <select id="selectedTaskFields" placeholder="Select the Task Fields" multiple="multiple" class="w100">
+                        <option value="status">status</option>
+                        <option value="due_date">due_date</option>
+                        <option value="description">description</option>
+                        <option value="task_id">task_id</option>
+                        <option value="text">text</option>
+                        <option value="space_id">space_id</option>
+                        <option value="responsible">responsible</option>
+                        <option value="private">private</option>
+                        <option value="due_time">due_time</option>
+                        <option value="link">link</option>
+                        <option value="due_on">due_on</option>
+                        <option value="external_id">external_id</option>
+                    </select>
+                    <div id="taskError" class="star"></div>
+                </div>
+            </div>
+        </div>
+        <div id="error_div"></div>
+    </div>
+    <script>
+        $("#error_div").hide();
+
+        function postConfigs() {
+            let orgID = $("#selectedOrganization").val();
+            let workSpaceID = $("#selectedWorkspace").val();
+            let selectedTask = $("#selectedTaskFields").val();
+            let fdAPIDomain = $("#fdAPIDomain").val();
+            let fdCustomDomain = $("#fdCustomDomain").val();
+            return {
+                orgID: orgID,
+                workSpaceID: workSpaceID,
+                selectedTask: selectedTask,
+                fdAPIDomain: fdAPIDomain,
+                fdCustomDomain: fdCustomDomain
+            }
+        }
+
+        function getConfigs(configs) {
+            updateConfig = configs;
+            $("#fdCustomDomain").val(updateConfig.fdCustomDomain);
+            $("#fdAPIDomain").val(updateConfig.fdAPIDomain);
+        }
+    </script>
+</body>
+
+</html>

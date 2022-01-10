@@ -1,0 +1,37 @@
+{
+  "platform-version": "2.2",
+  "product": {
+    "freshdesk": {
+      "location": {
+        "ticket_sidebar": {
+          "url": "template.html",
+          "icon": "podio.svg"
+        }
+      },
+      "functions": {
+        "createTask": {
+          "timeout": 10
+        },
+        "taskDetails": {
+          "timeout": 10
+        },
+        "getContacts": {
+          "timeout": 10
+        },
+        "fetchTasksToLink": {
+          "timeout": 10
+        }
+      }
+    }
+  },
+  "whitelisted-domains": [
+    "https://api.podio.com"
+  ],
+  "dependencies": {
+    "base-64": "0.1.0"
+  },
+  "engines": {
+    "node": "12.22.6",
+    "fdk": "7.0.0"
+  }
+}

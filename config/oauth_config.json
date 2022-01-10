@@ -1,0 +1,24 @@
+{
+    "client_id": "<%= oauth_iparams.client_id %>",
+    "client_secret": "<%= oauth_iparams.client_secret %>",
+    "authorize_url": "https://podio.com/oauth/authorize",
+    "token_url": "https://podio.com/oauth/token",
+    "options": {
+        "scope": "read"
+    },
+    "token_type": "account",
+    "oauth_iparams": {
+        "client_id": {
+            "display_name": "Podio Client ID",
+            "description": "Please enter your Podio client ID",
+            "type": "text",
+            "required": true
+        },
+        "client_secret": {
+            "display_name": "Podio Client Secret",
+            "description": "Please enter your Podio client secret",
+            "type": "text",
+            "required": true
+        }
+    }
+}
