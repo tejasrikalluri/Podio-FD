@@ -99,28 +99,3 @@ function handleError(e) {
     }
 }
 
-function validate() {
-    var isValid = true;
-    let orgID = $("#selectedOrganization").val();
-    let workSpaceID = $("#selectedWorkspace").val();
-    let selectedTask = $("#selectedTaskFields").val();
-    let fdAPIDomain = $("#fdAPIDomain").val().trim();
-    if (fdAPIDomain.length === 0) {
-        isValid = false;
-        $("#fdAPIDomain").attr("state", "error");
-        $("#fdAPIDomain").attr("state-text", "This field is mandatory.");
-    }
-    if (selectedTask.length === 0) {
-        isValid = false;
-        $("#taskError").show().text("This field is mandatory.");
-    }
-    if (workSpaceID === null) {
-        isValid = false;
-        $("#workError").show().text("This field is mandatory.");
-    }
-    if (orgID === "select") {
-        isValid = false;
-        $("#orgError").show().text("This field is mandatory.");
-    }
-    return isValid;
-}
