@@ -1,6 +1,13 @@
 ## PODIO App
 
+## Overview
 This app enables you to manage Podio tasks in Freshdesk.
+
+## Description
+* Create a task in Podio Organization and Workspace from a Freshdesk ticket.
+* When creating a task in Podio, it automatically appends Freshdesk ticket URL to the task description.
+* Link the Podio task to a Freshdesk ticket and view task details.
+* Unlink a Podio task from a Freshdesk ticket.
 
 ### Folder structure explained
 

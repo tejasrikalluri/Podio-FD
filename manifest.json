@@ -25,7 +25,8 @@
     }
   },
   "whitelisted-domains": [
-    "https://api.podio.com"
+    "https://api.podio.com",
+    "https://*.freshdesk.com"
   ],
   "dependencies": {
     "base-64": "0.1.0"

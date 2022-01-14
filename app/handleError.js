@@ -1,5 +1,4 @@
 function handleError(e) {
-    console.log(e)
     if (e.status === 401 || e.status === 403 || e.status === 502) {
         notifyMsg("<span>Invalid Credentials were given.</span>");
     } else if (e.status === 404) {

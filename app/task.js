@@ -20,7 +20,6 @@ $(document).ready(function () {
       appendContacts(podioClient);
     });
     $("#create").click(function () {
-      console.log("clicked...................")
       $("#create").prop("disabled", true);
       $("#create").text("Creating Task");
       $("#createTaskError, #successMsg, #taskNameError").hide();
