@@ -13,7 +13,7 @@ app.initialized().then(function (client) {
     $(document).on('change', "#selectedOrganization", function () {
         $("#selectedWorkspace").prop("disabled", false);
         var org_id = $("#selectedOrganization").val();
-        if (org_id !== null) {
+        if (org_id !== null && org_id !== "Select") {
             getWorkSpace(client, org_id);
         }
     });
@@ -36,20 +36,20 @@ function getOrganization(client) {
     };
     var orgUrl = baseUrl + "/org";
     client.request.get(orgUrl, options).then(function (orgData) {
-            var result = JSON.parse(orgData.response);
-            var org = [];
-            var orgId, orgName;
-            org.push(`<option selected>select</option>`);
-            $.each(result, function (k, v) {
-                orgId = v.org_id;
-                orgName = v.name;
-                org.push(`<option value="${orgId}">${orgName}</option>`);
-            });
-            $("#selectedOrganization").html(org.join(""));
-            if (updateConfig !== undefined) {
-                $('#selectedOrganization').val(updateConfig.orgID).trigger('change');
-            }
-        },
+        var result = JSON.parse(orgData.response);
+        var org = [];
+        var orgId, orgName;
+        org.push(`<option selected>Select</option>`);
+        $.each(result, function (k, v) {
+            orgId = v.org_id;
+            orgName = v.name;
+            org.push(`<option value="${orgId}">${xssHandler(orgName)}</option>`);
+        });
+        $("#selectedOrganization").html(org.join(""));
+        if (updateConfig !== undefined) {
+            $('#selectedOrganization').val(updateConfig.orgID).trigger('change');
+        }
+    },
         function (error) {
             handleError(error);
         });
@@ -69,16 +69,22 @@ function getWorkSpace(client, org_id) {
     client.request.get(spaceUrl, options).then(function (spaceData) {
         var space = JSON.parse(spaceData.response);
         var ws = [];
-        ws.push(`<option selected>select</option>`);
+        ws.push(`<option selected>Select</option>`);
         $.each(space, function (k, v) {
             var ws_id = v.space_id;
             var ws_name = v.name;
-            ws.push(`<option value="${ws_id}">${ws_name}</option>`);
+            ws.push(`<option value="${ws_id}">${xssHandler(ws_name)}</option>`);
         });
         $("#selectedWorkspace").html(ws);
         if (updateConfig !== undefined) {
             $("#selectedWorkspace").val(updateConfig.workSpaceID).trigger('change');
             $("#selectedTaskFields").val(updateConfig.selectedTask).trigger('change');
+            if ($("#selectedWorkspace").val() === null) {
+                $('#selectedWorkspace option').filter(function () {
+                    return this.textContent == 'Select'
+                }).prop('selected', true);
+            }
+
         }
     }, function (error) {
         handleError(error);
@@ -97,5 +103,8 @@ function handleError(e) {
     } else {
         $("#error_div").show().html("Unexpected error occurred, please try after sometime.");
     }
+}
+function xssHandler(name) {
+    return $("<span></span>").text(name)[0].innerHTML;
 }
 

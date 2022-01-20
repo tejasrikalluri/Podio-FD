@@ -48,9 +48,6 @@ $(document).ready(function() {
                 if (Object.keys(result).length === 0) {
                     $("#successMSG").show().html("There are no active tasks present in Podio to link.");
                     $("#load").hide();
-                    setTimeout(function() {
-                        closeModal(podioClient);
-                    }, 2000);
                 } else {
                     var map = new Map();
                     var liList = [];
