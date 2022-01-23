@@ -28,8 +28,7 @@ $(document).ready(function () {
                     getDB(client);
                 } else {
                     $('#detailsPage, #details, #unlink_task, #load_msg').hide();
-                    $('#create_task, #link_task').show();
-                    resizeApp(client);
+                    showPodioWidget(client);
                 }
             });
             ticketDetails(client, function (ticket_ID) {
@@ -52,7 +51,7 @@ $(document).ready(function () {
         });
     }
     function unlinkCondition(result) {
-        if (result.message === "Unlink") deleteDB(client);
+        if (result.message === "Unlink") deleteDB(client, "unlink");
     }
     var iparamsFunction = function (client, callback) {
         //Getting values from iParams
@@ -76,27 +75,33 @@ $(document).ready(function () {
             getDB(client);
         }, function () {
             $('#detailsPage, #details, #unlink_task, #load_msg').hide();
-            $('#create_task, #link_task').show();
-            resizeApp(client);
+            showPodioWidget(client);
         });
     }
 
-    function deleteDB(client) {
+    function deleteDB(client, origin) {
         ticketDetails(client, function (ticket_ID) {
             client.db.delete(ticket_ID).then(function () {
                 $('#detailsPage, #details, #unlink_task, #load_msg, #errorMsg').hide();
-                $("#apptext").html("Task Unlinked Successfully").show();
-                resizeApp(client);
-                setTimeout(() => {
-                    $("#apptext").hide();
-                    $('#create_task, #link_task').show();
+                if (origin === "unlink") {
+                    $("#apptext").html("Task Unlinked Successfully").show();
                     resizeApp(client);
-                }, 3000);
+                    setTimeout(() => {
+                        $("#apptext").hide();
+                        showPodioWidget(client);
+                    }, 3000);
+                } else {
+                    showPodioWidget(client);
+                }
 
             }, function (error) {
                 handleError(error);
             });
         });
+    }
+    function showPodioWidget(client){
+        $('#create_task, #link_task').show();
+        resizeApp(client);
     }
 
     function getDB(client) {
@@ -132,7 +137,7 @@ $(document).ready(function () {
                 $("#errorMsg").show().html("The task has been deleted from Podio.");
                 resizeApp(client);
                 setTimeout(function () {
-                    deleteDB(client);
+                    deleteDB(client, "delete");
                 }, 2000);
             } else {
                 var t_res = JSON.parse(task_data.response.body);
