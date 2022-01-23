@@ -12,7 +12,7 @@ $(document).ready(function () {
     if (day < 10)
       day = '0' + day.toString();
     var minDate = year + '-' + month + '-' + day;
-    $("#date").prop('min', minDate)
+    $("#date").prop('min', minDate);
     $("#date").click(function () {
       $("#createTaskError, #successMsg, #taskNameError, #dateError").hide();
     });

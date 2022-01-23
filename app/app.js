@@ -8,7 +8,7 @@ $(document).ready(function () {
                 client.interface.trigger("showConfirm", {
                     title: "Confirmation of Task Unlink",
                     message: "Are you sure you want to Unlink this Task?", saveLabel: "Unlink", cancelLabel: "Cancel"
-                }).then(unlinkCondition).catch(handleError(error));
+                }).then(unlinkCondition).catch(handleError);
             });
             $('#create_task').click(function () {
                 client.interface.trigger("showModal", {
@@ -52,7 +52,7 @@ $(document).ready(function () {
         });
     }
     function unlinkCondition(result) {
-        if (result.message == "Unlink") deleteDB(client);
+        if (result.message === "Unlink") deleteDB(client);
     }
     var iparamsFunction = function (client, callback) {
         //Getting values from iParams
@@ -206,7 +206,7 @@ $(document).ready(function () {
         taskDetails.push('<div class="muted">' + modified_label + '</div>');
         taskArray[k] === "due_on" && dataRequired !== 'N/A' ?
             taskDetails.push('<div id="displayDetails" data-value="' + taskArray[k] + '">' + dataRequired + ' (UTC)</div>') :
-            taskDetails.push('<div id="displayDetails" data-value="' + taskArray[k] + '">' + dataRequired + '</div>')
+            taskDetails.push('<div id="displayDetails" data-value="' + taskArray[k] + '">' + dataRequired + '</div>');
         repeatFunction(client, taskDetails, taskArray, t_res, k, ticket_id, apiDomain, customDomain);
     }
 

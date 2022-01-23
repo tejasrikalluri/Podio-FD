@@ -81,7 +81,7 @@ function getWorkSpace(client, org_id) {
             $("#selectedTaskFields").val(updateConfig.selectedTask).trigger('change');
             if ($("#selectedWorkspace").val() === null) {
                 $('#selectedWorkspace option').filter(function () {
-                    return this.textContent == 'Select'
+                    return this.textContent === 'Select';
                 }).prop('selected', true);
             }
 

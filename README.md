@@ -24,9 +24,7 @@ This app enables you to manage Podio tasks in Freshdesk.
 │   └── iparams.html		The getConfigs and postConfigs methods, the html part for the settings page UI is present in this file.
 ├── app
 │   ├── podio.svg		This is the PODIO icon file.
-│   ├── icon.svg		This is Freshdesk icon file.
-│   ├── style.css		The css for the Freshdesk logo is present in this file.
-│   ├── custom.css		All the custom css present here.
+│   │── custom.css		All the custom css present here.
 │   ├── template.html		As soon as the APP is activated in Freshdesk ticket details page, we will see the UI and the html for this UI is 					present in this file.
 │   ├── taskModel.html		This file contains the html part for the UI required to create a task in PODIO using the APP in Freshdesk ticket 					details page.
 │   ├── common.js		The common error methods, closing the model, resize the APP in Freshdesk ticket details page methods or function are 					written in this file.
@@ -37,4 +35,4 @@ This app enables you to manage Podio tasks in Freshdesk.
 
 ### Changes done in this version
 
-	As customer reported we fix API errors in this version
+As customer reported we fix API errors in this version
