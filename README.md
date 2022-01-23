@@ -29,7 +29,7 @@ This app enables you to manage Podio tasks in Freshdesk.
 │   ├── custom.css		All the custom css present here.
 │   ├── template.html		As soon as the APP is activated in Freshdesk ticket details page, we will see the UI and the html for this UI is 					present in this file.
 │   ├── taskModel.html		This file contains the html part for the UI required to create a task in PODIO using the APP in Freshdesk ticket 					details page.
-│   ├── handleError.js		The common error methods, closing the model, resize the APP in Freshdesk ticket details page methods or function are 					written in this file.
+│   ├── common.js		The common error methods, closing the model, resize the APP in Freshdesk ticket details page methods or function are 					written in this file.
 │   ├── linkModel.html		This file contains the html part for the UI required to link a task in PODIO to the particular Freshdesk ticket.
 │   ├── task.js			The complete logic behind task creation, displaying the task information is written in this file.
 │   ├── link.js			The code/logic to link a task to current Freshdesk ticket with the task choosen is written in this file.

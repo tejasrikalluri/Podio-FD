@@ -90,7 +90,7 @@ $(document).ready(function() {
                 }).then(function() {
                     $("#load").hide();
                     $("#linkTaskButton").text("Task Linked").prop("disabled", true);
-                    $('#successMSG').show().text("Task linked successfully!!!");
+                    $('#successMSG').show().text("Task linked successfully");
                     podioClient.instance.send({
                         message: {
                             msg: "success"

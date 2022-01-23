@@ -2,15 +2,25 @@ $(document).ready(function () {
   app.initialized().then(function (_client) {
     $("#mainDiv").hide();
     var podioClient = _client;
-    $("#datepicker").datepicker({
-      autoclose: true,
-      todayHighlight: true,
-      startDate: "date",
-    }).datepicker('update', new Date());
-    $("#datepicker").click(function () {
+    var podioClient = _client;
+    var dtToday = new Date();
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if (month < 10)
+      month = '0' + month.toString();
+    if (day < 10)
+      day = '0' + day.toString();
+
+    var maxDate = year + '-' + month + '-' + day;
+
+    $("#date").prop('min', maxDate)
+    $("#date").click(function () {
       $("#createTaskError, #successMsg, #taskNameError, #dateError").hide();
     });
-    $('#st_contact').select2();
+    $('#st_contact').select2({
+      'width': '95%'
+    });
     $("#createTaskError, #successMsg, #mainDiv, #taskNameError, #errorMsg, #dateError").hide();
     $('#load').show().html("Loading please wait...");
     ticketInfo(podioClient, function (ticketData) {
@@ -29,7 +39,7 @@ $(document).ready(function () {
       $("#createTaskError, #successMsg, #taskNameError, #dateError").hide();
       enableButton();
     });
-    $("#st_contact, #datepicker").change(function () {
+    $("#st_contact, #date").change(function () {
       $("#createTaskError, #successMsg, #taskNameError, #dateError").hide();
       enableButton();
     });
@@ -135,7 +145,7 @@ $(document).ready(function () {
             contact_val = contact_val.map(Number);
           }
           var fdCustomDomain = iparamsObj.fdCustomDomain;
-          var dueDate = $('#datepicker').datepicker("getDate");
+          var dueDate = $('#date').val();
           if (dueDate !== "Invalid Date") {
             var formattedDate = new Date(dueDate);
             var d = formattedDate.getDate();
@@ -153,7 +163,7 @@ $(document).ready(function () {
             domainVal = domain;
           }
           var link_url = "https://" + domainVal + "/a/tickets/" + ticketData.ticketId;
-          description += " Ticket: " + link_url;
+          description += "\nTicket: " + link_url;
           var bodyData = {
             text: taskName,
             description: description,
@@ -179,7 +189,7 @@ $(document).ready(function () {
   function errorBlockOfCreateTask(error) {
     $('#load').hide().html("");
     if (error.status === 400) {
-      $('#createTaskError').show().text("Unexpected error occurred.");
+      $('#createTaskError').show().text("Please provide valid Task details.");
     } else {
       $('#createTaskError').show().text("Failed to create task in your podio.");
     }
@@ -190,7 +200,7 @@ $(document).ready(function () {
 
   function successBlockOfCreateTask(podioClient) {
     $('#load').hide().html("");
-    $('#successMsg').show().text("Task created successfully in your Podio !!!");
+    $('#successMsg').show().text("Task created successfully in your Podio");
     $("#create").prop("disabled", true);
     $("#create").text("Created Task");
     setTimeout(function () {

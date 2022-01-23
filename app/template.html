@@ -8,7 +8,7 @@
   <script src="https://static.freshdev.io/fdk/2.0/assets/fresh_client.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="app.js"></script>
-  <script src="handleError.js"></script>
+  <script src="common.js"></script>
   <script type="module" src="https://unpkg.com/@freshworks/crayons/dist/crayons/crayons.esm.js">
   </script>
   <script nomodule src="https://unpkg.com/@freshworks/crayons/dist/crayons/crayons.js">
@@ -19,11 +19,7 @@
 <body>
   <div id="requiredLinks">
     <div>
-      <div class="app-box">
-        <div class="logo"></div>
-      </div>
-      <div class="fw-divider"></div>
-      <p id="apptext" class="app-text"></p>
+      <p id="apptext" class="app-text colorGreen"></p>
       <div class="errcolor star" id="errorMsg"></div>
       <div id="load_msg">Loading, please wait...</div>
       <div id="form_hide">

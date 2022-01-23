@@ -2,12 +2,12 @@
     color: red;
 }
 
-.w100 {
+.w95, .form-control {
     width: 95% !important;
 }
 
-.colorBlue {
-    color: blue;
+.colorGreen {
+    color: green;
 }
 
 .createTask {
@@ -22,10 +22,10 @@
     width: 100% !important;
 }
 
-.datepicker {
-    width: 50% !important;
-}
-
 .width100 {
     width: 100% !important;
+}
+
+.muted {
+    text-transform: capitalize;
 }
