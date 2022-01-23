@@ -1,6 +1,6 @@
 $(document).ready(function () {
     app.initialized().then(function (_client) {
-        var client = _client;
+        window.client = _client;
         client.events.on('app.activated', function () {
             $('#load_msg').show();
             $('#create_task, #link_task, #unlink_task, #detailsPage, #details, #errorMsg').hide();
@@ -8,11 +8,7 @@ $(document).ready(function () {
                 client.interface.trigger("showConfirm", {
                     title: "Confirmation of Task Unlink",
                     message: "Are you sure you want to Unlink this Task?", saveLabel: "Unlink", cancelLabel: "Cancel"
-                }).then(function (result) {
-                    if (result.message == "Unlink") deleteDB(client);
-                }).catch(function (error) {
-                    handleError(error);
-                });
+                }).then(unlinkCondition).catch(handleError(error));
             });
             $('#create_task').click(function () {
                 client.interface.trigger("showModal", {
@@ -54,6 +50,9 @@ $(document).ready(function () {
         }, function (error) {
             handleError(error);
         });
+    }
+    function unlinkCondition(result) {
+        if (result.message == "Unlink") deleteDB(client);
     }
     var iparamsFunction = function (client, callback) {
         //Getting values from iParams
@@ -161,16 +160,9 @@ $(document).ready(function () {
     }
 
     function iterateOverAllTaskFields(client, taskDetails, taskArray, t_res, k, ticket_id, apiDomain, customDomain) {
-        var domain;
         if (taskArray[k] !== undefined) {
-            if (customDomain !== undefined && customDomain !== null && customDomain !== "") {
-                domain = customDomain;
-            } else {
-                domain = apiDomain;
-            }
             if (taskArray[k] === "description") {
                 let descriptionData = t_res.description === '' ? 'N/A' : t_res.description;
-                console.log(t_res)
                 taskDetails.push('<div class="muted">Description</div>');
                 descriptionData.includes("\n") ?
                     taskDetails.push(`<div id="displayDetails"><div>${xssHandler(descriptionData).split("\n")[0]}</div><div>${xssHandler(descriptionData).split("\n")[1]}</div></div>`) :

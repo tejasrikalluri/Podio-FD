@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">30% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>3/10</span>
+        <span class='fraction'>0/10</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">40% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/5</span>
+        <span class='fraction'>0/5</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">30% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>3/10</span>
+        <span class='fraction'>0/10</span>
       </div>
     </div>
   </div>
@@ -89,13 +89,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">35×</span>
-<span class="cline-any cline-yes">35×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">function handleError(e) <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >    if (e.status === 401 || e.status === 403 || e.status === 502) {</span>
@@ -115,14 +115,14 @@ function closeModal(client) <span class="fstat-no" title="function not covered" 
 <span class="cstat-no" title="statement not covered" >    client.instance.close();</span>
 }
 &nbsp;
-function resizeApp(client) {
-    let height = $('#requiredLinks').outerHeight(true);
-    client.instance.resize({
+function resizeApp(client) <span class="fstat-no" title="function not covered" >{</span>
+    let height = <span class="cstat-no" title="statement not covered" >$('#requiredLinks').outerHeight(true);</span>
+<span class="cstat-no" title="statement not covered" >    client.instance.resize({</span>
         height: height + 10
     });
 }
-function xssHandler(name) {
-    return $("&lt;span&gt;&lt;/span&gt;").text(name)[0].innerHTML;
+function xssHandler(name) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return $("&lt;span&gt;&lt;/span&gt;").text(name)[0].innerHTML;</span>
 }
 &nbsp;</pre></td></tr>
 </table></pre>
