@@ -20,7 +20,7 @@ app.initialized().then(function (client) {
     $(document).on("fwFocus", "#fdAPIDomain", function () {
         $("#orgError, #workError, #taskError, #error_div").hide();
         $("#fdAPIDomain").attr("state", "normal");
-        $("#fdAPIDomain").attr("state-text", "Please enter freshdesk API domain URL. Ex: example.freshdesk.com.");
+        $("#fdAPIDomain").attr("state-text", "Please enter freshdesk API domain URL. Ex: example.freshdesk.com");
     });
 });
 

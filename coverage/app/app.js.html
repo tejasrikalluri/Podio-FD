@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">4.72% </span>
+        <span class="strong">4.88% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>6/127</span>
+        <span class='fraction'>6/123</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/42</span>
+        <span class='fraction'>0/41</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">4.65% </span>
+        <span class="strong">4.76% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/43</span>
+        <span class='fraction'>2/42</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">4.8% </span>
+        <span class="strong">4.96% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>6/125</span>
+        <span class='fraction'>6/121</span>
       </div>
     </div>
   </div>
@@ -259,13 +259,8 @@
 214
 215
 216
-217
-218
-219
-220
-221
-222</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
+217</td><td class="line-coverage quiet"><span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -275,11 +270,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -312,16 +303,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -427,13 +421,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -478,6 +466,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -487,7 +477,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">$(document).ready(function () {
     app.initialized().then(function (_client) {
-        var client = _client;
+        window.client = _client;
         client.events.on('app.activated', function () <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >            $('#load_msg').show();</span>
 <span class="cstat-no" title="statement not covered" >            $('#create_task, #link_task, #unlink_task, #detailsPage, #details, #errorMsg').hide();</span>
@@ -495,11 +485,7 @@
 <span class="cstat-no" title="statement not covered" >                client.interface.trigger("showConfirm", {</span>
                     title: "Confirmation of Task Unlink",
                     message: "Are you sure you want to Unlink this Task?", saveLabel: "Unlink", cancelLabel: "Cancel"
-                }).then(function (result) <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >                    if (result.message == "Unlink") <span class="cstat-no" title="statement not covered" >deleteDB(client);</span></span>
-                }).catch(function (error) <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >                    handleError(error);</span>
-                });
+                }).then(unlinkCondition).catch(handleError(error));
             });
 <span class="cstat-no" title="statement not covered" >            $('#create_task').click(function () <span class="fstat-no" title="function not covered" >{</span></span>
 <span class="cstat-no" title="statement not covered" >                client.interface.trigger("showModal", {</span>
@@ -541,6 +527,9 @@
         }, function (error) <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >            handleError(error);</span>
         });
+    }
+    function unlinkCondition(result) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        if (result.message == "Unlink") <span class="cstat-no" title="statement not covered" >deleteDB(client);</span></span>
     }
     var iparamsFunction = function (client, callback) <span class="fstat-no" title="function not covered" >{</span>
         //Getting values from iParams
@@ -648,13 +637,7 @@
     }
 &nbsp;
     function iterateOverAllTaskFields(client, taskDetails, taskArray, t_res, k, ticket_id, apiDomain, customDomain) <span class="fstat-no" title="function not covered" >{</span>
-        var domain;
 <span class="cstat-no" title="statement not covered" >        if (taskArray[k] !== undefined) {</span>
-<span class="cstat-no" title="statement not covered" >            if (customDomain !== undefined &amp;&amp; customDomain !== null &amp;&amp; customDomain !== "") {</span>
-<span class="cstat-no" title="statement not covered" >                domain = customDomain;</span>
-            } else {
-<span class="cstat-no" title="statement not covered" >                domain = apiDomain;</span>
-            }
 <span class="cstat-no" title="statement not covered" >            if (taskArray[k] === "description") {</span>
                 let descriptionData = <span class="cstat-no" title="statement not covered" >t_res.description === '' ? 'N/A' : t_res.description;</span>
 <span class="cstat-no" title="statement not covered" >                taskDetails.push('&lt;div class="muted"&gt;Description&lt;/div&gt;');</span>
@@ -698,7 +681,9 @@
         let v = <span class="cstat-no" title="statement not covered" >taskArray[k],</span> modified_label = <span class="cstat-no" title="statement not covered" >taskArray[k].includes("_") ? taskArray[k].replace("_", " ") : taskArray[k];</span>
         var dataRequired = <span class="cstat-no" title="statement not covered" >t_res[v] === null || t_res[v] === '' || t_res[v] === undefined ? 'N/A' : t_res[v];</span>
 <span class="cstat-no" title="statement not covered" >        taskDetails.push('&lt;div class="muted"&gt;' + modified_label + '&lt;/div&gt;');</span>
-<span class="cstat-no" title="statement not covered" >        taskDetails.push('&lt;div id="displayDetails" data-value="' + taskArray[k] + '"&gt;' + dataRequired + '&lt;/div&gt;');</span>
+<span class="cstat-no" title="statement not covered" >        taskArray[k] === "due_on" &amp;&amp; dataRequired !== 'N/A' ?</span>
+            taskDetails.push('&lt;div id="displayDetails" data-value="' + taskArray[k] + '"&gt;' + dataRequired + ' (UTC)&lt;/div&gt;') :
+            taskDetails.push('&lt;div id="displayDetails" data-value="' + taskArray[k] + '"&gt;' + dataRequired + '&lt;/div&gt;')
 <span class="cstat-no" title="statement not covered" >        repeatFunction(client, taskDetails, taskArray, t_res, k, ticket_id, apiDomain, customDomain);</span>
     }
 &nbsp;
@@ -712,7 +697,7 @@
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jan 23 2022 12:33:22 GMT+0530 (India Standard Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jan 23 2022 14:38:55 GMT+0530 (India Standard Time)
 </div>
 </div>
 <script src="../prettify.js"></script>

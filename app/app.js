@@ -204,7 +204,9 @@ $(document).ready(function () {
         let v = taskArray[k], modified_label = taskArray[k].includes("_") ? taskArray[k].replace("_", " ") : taskArray[k];
         var dataRequired = t_res[v] === null || t_res[v] === '' || t_res[v] === undefined ? 'N/A' : t_res[v];
         taskDetails.push('<div class="muted">' + modified_label + '</div>');
-        taskDetails.push('<div id="displayDetails" data-value="' + taskArray[k] + '">' + dataRequired + '</div>');
+        taskArray[k] === "due_on" && dataRequired !== 'N/A' ?
+            taskDetails.push('<div id="displayDetails" data-value="' + taskArray[k] + '">' + dataRequired + ' (UTC)</div>') :
+            taskDetails.push('<div id="displayDetails" data-value="' + taskArray[k] + '">' + dataRequired + '</div>')
         repeatFunction(client, taskDetails, taskArray, t_res, k, ticket_id, apiDomain, customDomain);
     }
 

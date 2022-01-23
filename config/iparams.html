@@ -20,20 +20,21 @@
         <div class="space1">
             <div>
                 <fw-input label="Freshdesk API Domain URL" class="w90" id="fdAPIDomain"
-                    state-text="Please enter freshdesk API Domain URL. Ex: example.freshdesk.com" state="normal"
+                    state-text="Please enter Freshdesk API Domain URL. Ex: example.freshdesk.com" state="normal"
                     placeholder="Enter Freshdesk API Domain URL" required clear-input>
                 </fw-input>
             </div>
             <div>
                 <fw-input label="Freshdesk Custom Domain URL" class="w90" id="fdCustomDomain"
-                    state-text="Please enter freshdesk Custom Domain URL. Ex: example.example.com" state="normal"
+                    state-text="Please enter Freshdesk Custom Domain URL. Ex: example.example.com" state="normal"
                     placeholder="Enter Freshdesk Custom Domain URL" clear-input>
                 </fw-input>
             </div>
         </div>
         <div>
             <div class="space col-sm-12">
-                <label class="labelClass">Configure Podio Organization, Workspace and Tasks fields that you wish to manage in
+                <label class="labelClass">Configure Podio Organization, Workspace and Tasks fields that you wish to
+                    manage in
                     Freshdesk:
                 </label>
             </div>
@@ -117,11 +118,11 @@
                 isValid = false;
                 $("#taskError").show().text("This field is mandatory.");
             }
-            if (workSpaceID === null) {
+            if (workSpaceID === null || workSpaceID === 'Select') {
                 isValid = false;
                 $("#workError").show().text("This field is mandatory.");
             }
-            if (orgID === "select") {
+            if (orgID === "Select") {
                 isValid = false;
                 $("#orgError").show().text("This field is mandatory.");
             }
