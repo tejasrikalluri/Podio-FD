@@ -46,7 +46,7 @@ $(document).ready(function() {
             podioClient.request.invoke("fetchTasksToLink", options).then(function(tData) {
                 var result = tData.response.body;
                 if (Object.keys(result).length === 0) {
-                    $("#successMSG").show().html("There are no active tasks present in Podio to link.");
+                    $("#successMSG").show().html("There are no active tasks present in Podio to link.").removeClass("colorGreen");
                     $("#load").hide();
                 } else {
                     var map = new Map();
@@ -90,7 +90,7 @@ $(document).ready(function() {
                 }).then(function() {
                     $("#load").hide();
                     $("#linkTaskButton").text("Task Linked").prop("disabled", true);
-                    $('#successMSG').show().text("Task linked successfully");
+                    $('#successMSG').show().text("Task linked successfully").addClass("colorGreen");
                     podioClient.instance.send({
                         message: {
                             msg: "success"

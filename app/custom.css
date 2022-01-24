@@ -1,5 +1,6 @@
 .star {
-    color: red;
+    color: rgb(215, 45, 48);
+    font-size: 11px !important;
 }
 
 .w95, .form-control {
@@ -8,6 +9,10 @@
 
 .colorGreen {
     color: green;
+}
+
+.mb6 {
+    margin-bottom: 6px;
 }
 
 .createTask {

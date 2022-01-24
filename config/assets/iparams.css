@@ -5,7 +5,8 @@
 }
 
 .star {
-    color: red;
+    color: rgb(215, 45, 48);
+    font-size: 11px !important;
 }
 
 .space1 {

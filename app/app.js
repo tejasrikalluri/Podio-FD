@@ -99,7 +99,7 @@ $(document).ready(function () {
             });
         });
     }
-    function showPodioWidget(client){
+    function showPodioWidget(client) {
         $('#create_task, #link_task').show();
         resizeApp(client);
     }
@@ -169,8 +169,9 @@ $(document).ready(function () {
             if (taskArray[k] === "description") {
                 let descriptionData = t_res.description === '' ? 'N/A' : t_res.description;
                 taskDetails.push('<div class="muted">Description</div>');
-                descriptionData.includes("\n") ?
-                    taskDetails.push(`<div id="displayDetails"><div>${xssHandler(descriptionData).split("\n")[0]}</div><div>${xssHandler(descriptionData).split("\n")[1]}</div></div>`) :
+                descriptionData.includes("\nTicket: ") ?
+                    taskDetails.push(`<div id="displayDetails"><div>${xssHandler(descriptionData).split("\nTicket: ")[0]}</div><div>Ticket: 
+                    ${xssHandler(descriptionData).split("\nTicket: ")[1]}</div></div>`) :
                     taskDetails.push(`<div id="displayDetails"><div>${xssHandler(descriptionData)}</div></div>`);
                 repeatFunction(client, taskDetails, taskArray, t_res, k, ticket_id, apiDomain, customDomain);
             } else {
@@ -209,9 +210,13 @@ $(document).ready(function () {
         let v = taskArray[k], modified_label = taskArray[k].includes("_") ? taskArray[k].replace("_", " ") : taskArray[k];
         var dataRequired = t_res[v] === null || t_res[v] === '' || t_res[v] === undefined ? 'N/A' : t_res[v];
         taskDetails.push('<div class="muted">' + modified_label + '</div>');
-        taskArray[k] === "due_on" && dataRequired !== 'N/A' ?
-            taskDetails.push('<div id="displayDetails" data-value="' + taskArray[k] + '">' + dataRequired + ' (UTC)</div>') :
-            taskDetails.push('<div id="displayDetails" data-value="' + taskArray[k] + '">' + dataRequired + '</div>');
+        if (taskArray[k] === "status" || taskArray[k] === "private")
+        else {
+            taskArray[k] === "due_on" && dataRequired !== 'N/A' ?
+                taskDetails.push('<div id="displayDetails" data-value="' + taskArray[k] + '">' + dataRequired + ' (UTC)</div>') :
+                taskDetails.push('<div id="displayDetails" data-value="' + taskArray[k] + '">' + dataRequired + '</div>');
+        }
+
         repeatFunction(client, taskDetails, taskArray, t_res, k, ticket_id, apiDomain, customDomain);
     }
 
