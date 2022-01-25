@@ -17,10 +17,10 @@ exports = {
             $request.post(url, option).then(function () {
                 renderData();
             }, function (error) {
-                renderData(error, null);
+                renderData(null, error);
             });
         } catch (error) {
-            renderData(error, null);
+            renderData(null, error);
 
         }
 
@@ -43,7 +43,7 @@ exports = {
             try {
                 var desc = JSON.parse(err.response).error_description;
             } catch (error) {
-                renderData(error, null);
+                renderData(null, error);
             }
             renderData(null, desc);
         });
@@ -70,11 +70,11 @@ exports = {
                     body: map
                 });
             } catch (error) {
-                renderData(error, null);
+                renderData(null, error);
             }
 
         }, function (err) {
-            renderData(err, null);
+            renderData(null, err);
         });
     },
     fetchTasksToLink: function (getTaskoptions) {
@@ -100,11 +100,11 @@ exports = {
                     body: map
                 });
             } catch (error) {
-                renderData(error, null);
+                renderData(null, error);
             }
 
         }, function (err) {
-            renderData(err, null);
+            renderData(null, err);
         });
     }
 };

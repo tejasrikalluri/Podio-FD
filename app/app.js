@@ -6,8 +6,8 @@ $(document).ready(function () {
             $('#create_task, #link_task, #unlink_task, #detailsPage, #details, #errorMsg').hide();
             $(document).on('click', '#unlink_task', function () {
                 client.interface.trigger("showConfirm", {
-                    title: "Confirmation of Task Unlink",
-                    message: "Are you sure you want to Unlink this Task?", saveLabel: "Unlink", cancelLabel: "Cancel"
+                    title: "Confirmation of task unlink",
+                    message: "Are you sure you want to unlink this task?", saveLabel: "Unlink", cancelLabel: "Cancel"
                 }).then(unlinkCondition).catch(handleError);
             });
             $('#create_task').click(function () {
@@ -84,7 +84,7 @@ $(document).ready(function () {
             client.db.delete(ticket_ID).then(function () {
                 $('#detailsPage, #details, #unlink_task, #load_msg, #errorMsg').hide();
                 if (origin === "unlink") {
-                    $("#apptext").html("Task Unlinked Successfully").show();
+                    $("#apptext").html("Task unlinked successfully").show();
                     resizeApp(client);
                     setTimeout(() => {
                         $("#apptext").hide();
@@ -209,8 +209,9 @@ $(document).ready(function () {
     function finalDetails(client, taskDetails, taskArray, t_res, k, ticket_id, apiDomain, customDomain) {
         let v = taskArray[k], modified_label = taskArray[k].includes("_") ? taskArray[k].replace("_", " ") : taskArray[k];
         var dataRequired = t_res[v] === null || t_res[v] === '' || t_res[v] === undefined ? 'N/A' : t_res[v];
-        taskDetails.push('<div class="muted">' + modified_label + '</div>');
+        taskDetails.push('<div class="muted">' + modified_label.replace(/^(.)|\s+(.)/g, c => c.toUpperCase()) + '</div>');
         if (taskArray[k] === "status" || taskArray[k] === "private")
+            taskDetails.push('<div id="displayDetails" data-value="' + taskArray[k] + '">' + dataRequired + ' (UTC)</div>');
         else {
             taskArray[k] === "due_on" && dataRequired !== 'N/A' ?
                 taskDetails.push('<div id="displayDetails" data-value="' + taskArray[k] + '">' + dataRequired + ' (UTC)</div>') :

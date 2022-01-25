@@ -92,16 +92,23 @@ $(document).ready(function () {
       };
       $('#load').html("").hide();
       podioClient.request.invoke("getContacts", cOptions).then(function (contactData) {
-        var result = contactData.response.body;
-        var map = new Map();
-        var contactList = [];
-        if (result.length !== 0) {
-          $.each(result, function (k, v) {
-            map[k] = v;
-            contactList.push("<option value=" + v + ">" + k + "</option>");
-          });
+        if (data.response.message === undefined) {
+          var result = contactData.response.body;
+          var map = new Map();
+          var contactList = [];
+          if (result.length !== 0) {
+            $.each(result, function (k, v) {
+              map[k] = v;
+              contactList.push("<option value=" + v + ">" + k + "</option>");
+            });
+          }
+          $('#st_contact').html(contactList);
+        } else {
+          $('#load').hide().html("");
+          $('#createTaskError').show().text("Unable to fetch the Responsible");
+          handleError(error);
         }
-        $('#st_contact').html(contactList);
+
       }, function (error) {
         $('#load').hide().html("");
         $('#createTaskError').show().text("Unable to fetch the Responsible");
@@ -144,6 +151,7 @@ $(document).ready(function () {
           }
           var fdCustomDomain = iparamsObj.fdCustomDomain;
           var dueDate = $('#date').val();
+          console.log(new Date(dueDate))
           if (dueDate !== "Invalid Date") {
             var formattedDate = new Date(dueDate);
             var d = formattedDate.getDate();
@@ -175,7 +183,8 @@ $(document).ready(function () {
             body: encodeBody
           };
           podioClient.request.invoke('createTask', options).then(function () {
-            successBlockOfCreateTask(podioClient);
+            (data.response.message === undefined) ?
+              successBlockOfCreateTask(podioClient) : errorBlockOfCreateTask(error);
           }, function (error) {
             errorBlockOfCreateTask(error);
           }); // request
@@ -185,6 +194,7 @@ $(document).ready(function () {
   }
 
   function errorBlockOfCreateTask(error) {
+    console.log(error.response.error_description)
     $('#load').hide().html("");
     if (error.status === 400) {
       $('#createTaskError').show().text("Please provide valid Task details.");
