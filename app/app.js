@@ -8,7 +8,7 @@ $(document).ready(function () {
                 client.interface.trigger("showConfirm", {
                     title: "Confirmation of task unlink",
                     message: "Are you sure you want to unlink this task?", saveLabel: "Unlink", cancelLabel: "Cancel"
-                }).then(unlinkCondition);
+                }).then(unlinkCondition).catch(handleError);
             });
             $('#create_task').click(function () {
                 client.interface.trigger("showModal", {
