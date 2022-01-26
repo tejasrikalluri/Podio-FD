@@ -34,3 +34,13 @@
 .muted {
     text-transform: capitalize;
 }
+
+.mt3 {
+    margin-top: 3px;
+    font-size: 14px;
+}
+
+.mt3 a {
+    cursor: pointer;
+    text-decoration: none;
+}

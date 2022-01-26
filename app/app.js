@@ -8,7 +8,7 @@ $(document).ready(function () {
                 client.interface.trigger("showConfirm", {
                     title: "Confirmation of task unlink",
                     message: "Are you sure you want to unlink this task?", saveLabel: "Unlink", cancelLabel: "Cancel"
-                }).then(unlinkCondition).catch(handleError);
+                }).then(unlinkCondition);
             });
             $('#create_task').click(function () {
                 client.interface.trigger("showModal", {
@@ -212,19 +212,20 @@ $(document).ready(function () {
         var modifiedLabel = (taskArray[k].includes("_")) ? taskArray[k].replace("_", " ") : taskArray[k];
         var finalMofieldLabel = (modifiedLabel.includes("id")) ? modifiedLabel.replace("id", "iD") : modifiedLabel;
         taskDetails.push('<div class="muted">' + finalMofieldLabel + '</div>');
-        if (taskArray[k] === "status" || taskArray[k] === "private") {
-            var stringData = dataRequired.toString();
-            taskDetails.push('<div id="displayDetails" data-value="' + taskArray[k] + '">' + stringData.charAt(0).toUpperCase() + stringData.slice(1).toLowerCase() + '</div>');
-        }
-        else {
-            taskArray[k] === "due_on" && dataRequired !== 'N/A' ?
-                taskDetails.push('<div id="displayDetails" data-value="' + taskArray[k] + '">' + dataRequired + ' (UTC)</div>') :
-                taskDetails.push('<div id="displayDetails" data-value="' + taskArray[k] + '">' + dataRequired + '</div>');
-        }
-
+        splitFinalDetails(taskArray[k], dataRequired, taskDetails);
         repeatFunction(client, taskDetails, taskArray, t_res, k, ticket_id, apiDomain, customDomain);
     }
-
+    function splitFinalDetails(k, dataRequired, taskDetails) {
+        if (k === "status" || k === "private") {
+            var stringData = dataRequired.toString();
+            taskDetails.push('<div id="displayDetails" data-value="' + k + '">' + stringData.charAt(0).toUpperCase() + stringData.slice(1).toLowerCase() + '</div>');
+        }
+        else {
+            k === "due_on" && dataRequired !== 'N/A' ?
+                taskDetails.push('<div id="displayDetails" data-value="' + k + '">' + dataRequired + ' (UTC)</div>') :
+                taskDetails.push('<div id="displayDetails" data-value="' + k + '">' + dataRequired + '</div>');
+        }
+    }
     function repeatFunction(client, taskDetails, taskArray, t_res, k, ticket_id, apiDomain, customDomain) {
         k++;
         iterateOverAllTaskFields(client, taskDetails, taskArray, t_res, k, ticket_id, apiDomain, customDomain);
