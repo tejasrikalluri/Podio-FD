@@ -46,7 +46,7 @@ $(document).ready(function () {
             podioClient.request.invoke("fetchTasksToLink", options).then(function (tData) {
                 var result = tData.response.body;
                 if (Object.keys(result).length === 0) {
-                    $("#successMSG").show().html("There are no active tasks present in Podio to link.").removeClass("colorGreen");
+                    $("#successMSG").show().html("There are no active tasks present in podio to link.").removeClass("colorGreen");
                     $("#load").hide();
                 } else {
                     var map = new Map();
@@ -97,7 +97,7 @@ $(document).ready(function () {
                         podioClient.instance.close();
                     }, 2000);
                 }, function () {
-                    $('#divError').show().text("Failed to link Podio task.");
+                    $('#divError').show().text("Failed to link podio task.");
                     $("#load").hide();
                     $("#linkTaskButton").text("Link Task").prop("disabled", false);
                 });

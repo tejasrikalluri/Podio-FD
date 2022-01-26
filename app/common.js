@@ -1,6 +1,6 @@
 function handleError(e) {
     if (e.status === 401 || e.status === 403 || e.status === 502) {
-        notifyMsg("<span>Invalid Credentials were given.</span>");
+        notifyMsg("<span>Invalid credentials were given.</span>");
     } else if (e.status === 404) {
         notifyMsg("<span>Page not found.</span>");
     } else {

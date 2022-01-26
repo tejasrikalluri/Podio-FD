@@ -9,13 +9,13 @@
     "token_type": "account",
     "oauth_iparams": {
         "client_id": {
-            "display_name": "Podio Client ID",
+            "display_name": "Podio client ID",
             "description": "Please enter your Podio client ID",
             "type": "text",
             "required": true
         },
         "client_secret": {
-            "display_name": "Podio Client Secret",
+            "display_name": "Podio client Secret",
             "description": "Please enter your Podio client secret",
             "type": "text",
             "required": true

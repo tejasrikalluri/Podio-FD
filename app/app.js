@@ -58,7 +58,7 @@ $(document).ready(function () {
         client.iparams.get().then(function (iparamData) {
             let apiDomain = iparamData.fdAPIDomain;
             let customDomain = iparamData.fdCustomDomain;
-            let selectedTaskArr = iparamData.selectedTask;
+            let selectedTaskArr = iparamData.selectedTaskVal;
             let taskArray = [];
             taskArray["apiDomain"] = apiDomain;
             taskArray["customDomain"] = customDomain;
@@ -207,11 +207,15 @@ $(document).ready(function () {
     }
 
     function finalDetails(client, taskDetails, taskArray, t_res, k, ticket_id, apiDomain, customDomain) {
-        let v = taskArray[k], modified_label = taskArray[k].includes("_") ? taskArray[k].replace("_", " ") : taskArray[k];
+        let v = taskArray[k];
         var dataRequired = t_res[v] === null || t_res[v] === '' || t_res[v] === undefined ? 'N/A' : t_res[v];
-        taskDetails.push('<div class="muted">' + modified_label.replace(/^(.)|\s+(.)/g, c => c.toUpperCase()) + '</div>');
-        if (taskArray[k] === "status" || taskArray[k] === "private")
-            taskDetails.push('<div id="displayDetails" data-value="' + taskArray[k] + '">' + dataRequired + ' (UTC)</div>');
+        var modifiedLabel = (taskArray[k].includes("_")) ? taskArray[k].replace("_", " ") : taskArray[k];
+        var finalMofieldLabel = (modifiedLabel.includes("id")) ? modifiedLabel.replace("id", "iD") : modifiedLabel;
+        taskDetails.push('<div class="muted">' + finalMofieldLabel + '</div>');
+        if (taskArray[k] === "status" || taskArray[k] === "private") {
+            var stringData = dataRequired.toString();
+            taskDetails.push('<div id="displayDetails" data-value="' + taskArray[k] + '">' + stringData.charAt(0).toUpperCase() + stringData.slice(1).toLowerCase() + '</div>');
+        }
         else {
             taskArray[k] === "due_on" && dataRequired !== 'N/A' ?
                 taskDetails.push('<div id="displayDetails" data-value="' + taskArray[k] + '">' + dataRequired + ' (UTC)</div>') :

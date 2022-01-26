@@ -1,5 +1,5 @@
 .star {
-    color: rgb(215, 45, 48);
+    color: rgb(205 5 9);
     font-size: 11px !important;
 }
 
@@ -31,6 +31,6 @@
     width: 100% !important;
 }
 
-/* .muted {
+.muted {
     text-transform: capitalize;
-} */
+}

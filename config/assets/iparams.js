@@ -1,8 +1,8 @@
 var updateConfig;
 app.initialized().then(function (client) {
-    $("#selectedTaskFields").select2({
-        closeOnSelect: false
-    });
+    // $("#selectedTaskFields").select2({
+    //     closeOnSelect: false
+    // });
     $("#orgError, #workError, #taskError").hide();
     $("#selectedWorkspace").prop("disabled", true);
     window.client = client;
@@ -78,7 +78,7 @@ function getWorkSpace(client, org_id) {
         $("#selectedWorkspace").html(ws);
         if (updateConfig !== undefined) {
             $("#selectedWorkspace").val(updateConfig.workSpaceID).trigger('change');
-            $("#selectedTaskFields").val(updateConfig.selectedTask).trigger('change');
+            $("#selectedTaskFields").val(updateConfig.selectedTaskVal).trigger('change');
             if ($("#selectedWorkspace").val() === null) {
                 $('#selectedWorkspace option').filter(function () {
                     return this.textContent === 'Select';
