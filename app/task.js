@@ -92,23 +92,16 @@ $(document).ready(function () {
       };
       $('#load').html("").hide();
       podioClient.request.invoke("getContacts", cOptions).then(function (contactData) {
-        if (data.response.message === undefined) {
-          var result = contactData.response.body;
-          var map = new Map();
-          var contactList = [];
-          if (result.length !== 0) {
-            $.each(result, function (k, v) {
-              map[k] = v;
-              contactList.push("<option value=" + v + ">" + k + "</option>");
-            });
-          }
-          $('#st_contact').html(contactList);
-        } else {
-          $('#load').hide().html("");
-          $('#createTaskError').show().text("Unable to fetch the Responsible");
-          handleError(error);
+        var result = contactData.response.body;
+        var map = new Map();
+        var contactList = [];
+        if (result.length !== 0) {
+          $.each(result, function (k, v) {
+            map[k] = v;
+            contactList.push("<option value=" + v + ">" + k + "</option>");
+          });
         }
-
+        $('#st_contact').html(contactList);
       }, function (error) {
         $('#load').hide().html("");
         $('#createTaskError').show().text("Unable to fetch the Responsible");
@@ -150,8 +143,7 @@ $(document).ready(function () {
             contact_val = contact_val.map(Number);
           }
           var fdCustomDomain = iparamsObj.fdCustomDomain;
-          var dueDate = $('#date').val();
-          console.log(new Date(dueDate))
+          var dueDate = new Date($('#date').val());
           if (dueDate !== "Invalid Date") {
             var formattedDate = new Date(dueDate);
             var d = formattedDate.getDate();
@@ -183,8 +175,7 @@ $(document).ready(function () {
             body: encodeBody
           };
           podioClient.request.invoke('createTask', options).then(function () {
-            (data.response.message === undefined) ?
-              successBlockOfCreateTask(podioClient) : errorBlockOfCreateTask(error);
+            successBlockOfCreateTask(podioClient);
           }, function (error) {
             errorBlockOfCreateTask(error);
           }); // request
@@ -194,11 +185,13 @@ $(document).ready(function () {
   }
 
   function errorBlockOfCreateTask(error) {
-    console.log(error.response.error_description)
     $('#load').hide().html("");
-    if (error.status === 400) {
-      $('#createTaskError').show().text("Please provide valid Task details.");
-    } else {
+    if (error.status === 400 && error.message.includes("Must be a date")) {
+      $('#createTaskError').show().text('Invalid due date, please pick valid due date');
+    } else if (error.message === "Text must be non-empty") {
+      $('#createTaskError').show().text('Please enter valid task details');
+    }
+    else {
       $('#createTaskError').show().text("Failed to create task in your podio.");
     }
     setTimeout(function () {

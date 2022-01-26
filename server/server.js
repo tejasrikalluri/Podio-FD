@@ -17,7 +17,11 @@ exports = {
             $request.post(url, option).then(function () {
                 renderData();
             }, function (error) {
-                renderData(null, error);
+                var error = {
+                    status: error.status,
+                    message: error.response.error_description
+                };
+                renderData(error);
             });
         } catch (error) {
             renderData(null, error);
@@ -74,7 +78,11 @@ exports = {
             }
 
         }, function (err) {
-            renderData(null, err);
+            var error = {
+                status: err.status,
+                message: err.response.error_description
+            };
+            renderData(error);
         });
     },
     fetchTasksToLink: function (getTaskoptions) {
@@ -104,7 +112,11 @@ exports = {
             }
 
         }, function (err) {
-            renderData(null, err);
+            var error = {
+                status: err.status,
+                message: err.response.error_description
+            };
+            renderData(error);
         });
     }
 };

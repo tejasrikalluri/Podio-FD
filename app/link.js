@@ -44,31 +44,24 @@ $(document).ready(function () {
                 "spaceId": space_id
             };
             podioClient.request.invoke("fetchTasksToLink", options).then(function (tData) {
-                if (data.response.message === undefined) {
-                    var result = tData.response.body;
-                    if (Object.keys(result).length === 0) {
-                        $("#successMSG").show().html("There are no active tasks present in Podio to link.").removeClass("colorGreen");
-                        $("#load").hide();
-                    } else {
-                        var map = new Map();
-                        var liList = [];
-                        liList.push("<option value='select' selected disabled>Select</option>");
-                        if (result.length !== 0) {
-                            $.each(result, function (k, v) {
-                                map[k] = v;
-                                liList.push("<option value=" + v + ">" + k + "</option>");
-                            });
-                            $("#load").hide();
-                            $('#selectTask').show().html(liList);
-                            $("#linkTaskDiv").show();
-                        }
-                    }
-                } else {
-                    $("#linkTaskButton").text("Link Task").prop("disabled", false);
+                var result = tData.response.body;
+                if (Object.keys(result).length === 0) {
+                    $("#successMSG").show().html("There are no active tasks present in Podio to link.").removeClass("colorGreen");
                     $("#load").hide();
-                    handleError(error);
+                } else {
+                    var map = new Map();
+                    var liList = [];
+                    liList.push("<option value='select' selected disabled>Select</option>");
+                    if (result.length !== 0) {
+                        $.each(result, function (k, v) {
+                            map[k] = v;
+                            liList.push("<option value=" + v + ">" + k + "</option>");
+                        });
+                        $("#load").hide();
+                        $('#selectTask').show().html(liList);
+                        $("#linkTaskDiv").show();
+                    }
                 }
-
             }, function (error) {
                 $("#linkTaskButton").text("Link Task").prop("disabled", false);
                 $("#load").hide();
