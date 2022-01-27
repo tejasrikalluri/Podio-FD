@@ -56,7 +56,6 @@ $(document).ready(function () {
         resizeApp(client);
     }
     function unlinkCondition(result) {
-        console.log(result)
         if (result.message === "Unlink") deleteDB(client, "unlink");
     }
     var iparamsFunction = function (client, callback) {

@@ -19,7 +19,7 @@ function closeModal(client) {
 function resizeApp(client) {
     let height = $('#requiredLinks').outerHeight(true);
     client.instance.resize({
-        height: height + 11
+        height: height + 12
     });
 }
 function xssHandler(name) {

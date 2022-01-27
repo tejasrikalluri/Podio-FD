@@ -68,7 +68,7 @@ exports = {
                 var result = JSON.parse(data.response);
                 var map = new Map;
                 for (var i = 0; i < result.length; i++) {
-                    map[result[i].name] = result[i].user_id;
+                    map[result[i].name] = base64.encode(result[i].user_id);
                 }
                 renderData(null, {
                     body: map

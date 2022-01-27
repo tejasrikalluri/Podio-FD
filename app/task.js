@@ -97,8 +97,8 @@ $(document).ready(function () {
         var contactList = [];
         if (result.length !== 0) {
           $.each(result, function (k, v) {
-            map[k] = v;
-            contactList.push("<option value=" + v + ">" + k + "</option>");
+            map[k] = atob(v);
+            contactList.push("<option value=" + atob(v) + ">" + k + "</option>");
           });
         }
         $('#st_contact').html(contactList);
