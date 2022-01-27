@@ -1,8 +1,5 @@
 var updateConfig;
 app.initialized().then(function (client) {
-    // $("#selectedTaskFields").select2({
-    //     closeOnSelect: false
-    // });
     $("#orgError, #workError, #taskError").hide();
     $("#selectedWorkspace").prop("disabled", true);
     window.client = client;

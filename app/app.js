@@ -8,7 +8,7 @@ $(document).ready(function () {
                 client.interface.trigger("showConfirm", {
                     title: "Confirmation of task unlink",
                     message: "Are you sure you want to unlink this task?", saveLabel: "Unlink", cancelLabel: "Cancel"
-                }).then(unlinkCondition).catch(handleError);
+                }).then(unlinkCondition).catch(handleCatch);
             });
             $('#create_task').click(function () {
                 client.interface.trigger("showModal", {
@@ -50,7 +50,13 @@ $(document).ready(function () {
             handleError(error);
         });
     }
+    function handleCatch(req) {
+        $('#detailsPage,#unlink_task,#details').hide();
+        $("#errorMsg").show().html(req.error);
+        resizeApp(client);
+    }
     function unlinkCondition(result) {
+        console.log(result)
         if (result.message === "Unlink") deleteDB(client, "unlink");
     }
     var iparamsFunction = function (client, callback) {
@@ -143,7 +149,7 @@ $(document).ready(function () {
                 var t_res = JSON.parse(task_data.response.body);
                 $("#link_task, #create_task, #load_msg").hide();
                 $('#unlink_task, #detailsPage, #details').show();
-                $('#details').html('<a class="m5r" title="View Task in Podio" href="' + t_res.link + '" target="_blank" rel="noreferrer"><i class="fa fa-external-link"></i></a>');
+                $('#details').html('<a class="m5r" title="View task in podio" href="' + t_res.link + '" target="_blank" rel="noreferrer"><i class="fa fa-external-link"></i></a>');
                 appendTaskDetails(client, t_res, ticket_id);
             }
         }, function (error) {
